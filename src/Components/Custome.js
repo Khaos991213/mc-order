@@ -3,6 +3,7 @@ import {useLocation} from'react-router-dom';
 import useFirestore from "../hooks/useFireStore";
 import { CartContext } from "../Contexts/CartContext";
 import "./Cards.css";
+import { Link } from "react-router-dom";
 import SetsItem from "./setsitem";
 
 function Custome(props){
@@ -166,12 +167,14 @@ function Custome(props){
                       </ul>
                     );
                   })}
+                  <Link to="/menu">
                   <button
                         onClick={addToCart}
                         className='btn btn-secondary btn-lg rouned btn-sm'
                     >
                     <small>加入</small>
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>

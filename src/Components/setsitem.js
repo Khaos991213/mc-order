@@ -1,7 +1,5 @@
-import React, { useContext, useEffect,useState } from "react";
-import { CartContext } from "../Contexts/CartContext";
-import { projectFirestore } from "../Firebase";
-import {Link} from "react-router-dom";
+import React from "react";
+
 function SetsItem(props) {
   // eslint-disable-next-line
 //   const [cart, setCart] = useContext(CartContext);
@@ -31,12 +29,12 @@ function SetsItem(props) {
   
   
   const addToSet = () => {
-    const foodItem = {
-      text: props.text,
-      price: props.price,
-      id: Math.random().toString(36).substr(2, 9),
-      qty: 1,
-    };
+    // const foodItem = {
+    //   text: props.text,
+    //   price: props.price,
+    //   id: Math.random().toString(36).substr(2, 9),
+    //   qty: 1,
+    // };
     if(props.series==="side_dish"){
         localStorage.setItem("side_dish",props.text)
     }
@@ -79,6 +77,7 @@ function SetsItem(props) {
               
               <div className="text-md-left mb-4">
               </div>
+              
               <button
                 onClick={addToSet}
                 name={props.text}
@@ -87,6 +86,7 @@ function SetsItem(props) {
               >
                 <small>選擇</small>
               </button>
+              
             </div>
           </div>
         </div>

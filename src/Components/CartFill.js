@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../Contexts/UserContext";
 
 function CartFill(props) {
-  const [cart] = useContext(CartContext);
+  const [cart,setCart] = useContext(CartContext);
   const currency = "NTD";
   const fullPrice =  currency;
   const [currentUser] = useContext(UserContext);
@@ -216,9 +216,10 @@ function CartFill(props) {
               <hr className="mb-4" />
               <button
                 className="btn btn-primary btn-lg btn-block"
-                type="submit"
+              
+       
               >
-                Bestil og betal med kort ({props.totalPrice}
+                 確認付款 ({props.totalPrice-29}
                 {fullPrice})
               </button>
             </form>
