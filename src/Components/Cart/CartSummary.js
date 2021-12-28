@@ -15,6 +15,7 @@ function CartSummary() {
   const removeFromOrder = (id) => {
     const newCart = cart.filter((Cart) => Cart.id !== id);
     setCart(newCart);
+    //clear the cart
   };
 
   function clearCart() {
@@ -41,7 +42,7 @@ function CartSummary() {
     }
   };
   let totalPrice = 0;
-  const deliveryCost = 29;
+  const deliveryCost = 0;
   if (cart) {
     totalPrice = cart.reduce(
       (acc, curr) => acc + parseInt(curr.price * curr.qty),
@@ -52,7 +53,7 @@ function CartSummary() {
     <div>
       {" "}
       <h4 className="d-flex justify-content-between align-items-center mb-3">
-        <span className="text-muted">Din kurv</span>
+        <span className="text-muted">購物車</span>
         <span className="badge badge-primary badge-pill ">{qty}</span>
       </h4>
       <ul className="list-group mb-3">
@@ -84,27 +85,12 @@ function CartSummary() {
             </span>
           </li>
         ))}
-        <li className="list-group-item d-flex justify-content-between bg-light">
-          <div className="">
-            <h6 className="my-0">Levering</h6>
-          </div>
-          <span className="text-secondary">29{fullPrice}</span>
-        </li>
-        <li className="list-group-item d-flex justify-content-between bg-light">
-          <div className="text-success">
-            <h6 className="my-0">Rabatkode</h6>
-            <small>Velkomst rabat - 10%</small>
-          </div>
-          <span className="text-success">
-            {" "}
-            {Math.trunc(totalPrice * 0.1)}
-            {fullPrice}
-          </span>
-        </li>
+        
+        
         <li className="list-group-item d-flex justify-content-between">
-          <span>Total (DKK)</span>
+          <span>總金額</span>
           <strong>
-            {Math.trunc(totalPrice * 0.9)}
+            {totalPrice}
             {fullPrice}
           </strong>
         </li>

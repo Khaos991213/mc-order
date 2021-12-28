@@ -1,5 +1,5 @@
 .navbar {
-  background: var(--clr-primary-4);
+  background: var(--clr-red-dark);
   height: 80px;
   display: flex;
   justify-content: center;
@@ -28,7 +28,11 @@
   align-items: center;
   font-family: "PT Sans", sans-serif;
 }
+.Mcicon{
+  width: 60px;
+  height: 60px
 
+}
 .navbar-logo:hover {
   text-decoration: none;
   color: #fff;
@@ -98,7 +102,7 @@
   }
 
   .nav-menu.active {
-    background: var(--clr-primary-4);
+    background: var(--clr-black);
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
@@ -116,7 +120,7 @@
 
   .nav-links:hover {
     background-color: #fff;
-    color: var(--clr-primary-4);
+    color: var(--clr-black);
     border-radius: 0;
   }
 
@@ -159,7 +163,7 @@
 
   .nav-links-mobile:hover {
     background: #fff;
-    color: var(--clr-primary-4);
+    color: var(--clr-black4);
     transition: 250ms;
   }
 }

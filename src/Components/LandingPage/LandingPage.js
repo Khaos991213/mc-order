@@ -8,7 +8,6 @@ import {
   HeroBtn,
 } from "./LandingPageElements";
 import "./LandingPage.css";
-import ReactGA from "react-ga";
 import { ArrowDownCircle } from "react-feather";
 function LandingPage() {
   function navigateToMenu() {
@@ -33,24 +32,18 @@ function LandingPage() {
       return (-c / 2) * (t * (t - 2) - 1) + b;
     }
     requestAnimationFrame(animation);
-    ReactGA.event({
-      category: "Button",
-      action: "See menu was clicked",
-    });
   }
   return (
     <HeroContainer className='mb-5'>
       <HeroContent>
         <HeroItems className=''>
-          <HeroH1>Bæredygtig mad</HeroH1>
-          <HeroP>Leveret lige til døren</HeroP>
-
+          <HeroH1>麥當勞點餐系統</HeroH1>
           <HeroBtn
             onClick={navigateToMenu}
             className='btn btn-primary hvr-icon-hang'
           >
             {" "}
-            <span className='mr-2 p-5 '> Se menuen </span>
+            <span className='mr-2 p-5 '>餐點 </span>
             <ArrowDownCircle size={40} className='hvr-icon' />
           </HeroBtn>
         </HeroItems>

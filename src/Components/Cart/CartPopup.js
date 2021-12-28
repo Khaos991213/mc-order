@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CartQuickSummary from "./CartQuickSummary";
-
+//button below
 function CartPopup(props) {
   return (
     <div className=''>
@@ -14,7 +14,7 @@ function CartPopup(props) {
             <div class='col'>
               {" "}
               <Link to='/cart' className='btn btn-primary '>
-                Til kassen
+                結帳
               </Link>
             </div>
             <div class='col'>
@@ -23,7 +23,7 @@ function CartPopup(props) {
                 className='btn btn-outline-primary'
                 onClick={props.togglePopup}
               >
-                Fortsæt med at handle
+                關閉
               </button>
             </div>
           </div>

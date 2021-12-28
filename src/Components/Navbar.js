@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { CartContext } from "../Contexts/CartContext";
 import ReactGA from "react-ga";
+import mcicon from "../images/TopIcon.png"
 import { UserContext } from "../Contexts/UserContext";
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -14,7 +15,7 @@ function Navbar() {
 
   // eslint-disable-next-line
   const [cart] = useContext(CartContext);
-  const [currentUser] = useContext(UserContext);
+  //const [currentUser] = useContext(UserContext);
   let totalPrice = 0;
   let qty = 0;
   if (cart) {
@@ -27,8 +28,8 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-  const deliveryCost = 29;
-  const currency = " kr.";
+  const deliveryCost = 0;
+  const currency = " NTD";
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -55,8 +56,8 @@ function Navbar() {
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo mr-5" onClick={closeMobileMenu}>
-            SaveAMeal
-            <i className="fas fa-utensils" />
+            Mcdonald
+            <img src={mcicon} className="Mcicon"></img>
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -64,43 +65,10 @@ function Navbar() {
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <Link to="/menu" className="nav-links" onClick={closeMobileMenu}>
-                Menu
+                菜單
               </Link>
             </li>
-
-            <li className="nav-item">
-              <Link
-                to="/ContactUs"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Kontakt
-              </Link>
-            </li>
-            <li>
-              {!localStorage.getItem("loginEmail") && (
-                <Link
-                  to="/login"
-                  className="nav-links-mobile"
-                  onClick={closeMobileMenu}
-                >
-                  <i className="fas fa-user"></i>
-                  <br />
-                  Log ind
-                </Link>
-              )}
-              {localStorage.getItem("loginEmail") && (
-                <Link
-                  to="/profile"
-                  className="nav-links-mobile"
-                  onClick={closeMobileMenu}
-                >
-                  <i className="fas fa-user"></i>
-                  <br />
-                  {localStorage.getItem("loginFullname")}
-                </Link>
-              )}
-            </li>
+            
             <li>
               <Link
                 to="/cart"
@@ -113,18 +81,6 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {!currentUser && button && (
-            <Button buttonStyle="btn--outline">
-              {" "}
-              <i className="fas fa-user"></i> Log ind
-            </Button>
-          )}
-          {currentUser && button && (
-            <ButtonProfile buttonStyle="btn--outline" className="mr-5">
-              <span>{currentUser}</span>
-            </ButtonProfile>
-          )}
-
           {button && (
             <ButtonCart onClick={handleCartClick} buttonStyle="btn--outline">
               {" "}

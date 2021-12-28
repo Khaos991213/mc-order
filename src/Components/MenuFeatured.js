@@ -67,8 +67,8 @@ const MenuFeatured = () => {
                 </div>
               </div>
               <div className="text-center mb-5">
-                <Link to="/menu" className="btn btn-primary mb-5">
-                  Se hele menuen
+                <Link to="/menu" className  ="btn btn-primary mb-5">
+                  前往點餐
                 </Link>
               </div>
             </div>

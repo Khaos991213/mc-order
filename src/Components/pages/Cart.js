@@ -11,7 +11,6 @@ function Cart() {
   // eslint-disable-next-line
   const [cart, setCart] = useContext(CartContext);
   const deliveryCost = 29;
-  // eslint-disable-next-line
   let totalPrice = 0;
   if (cart) {
     totalPrice = cart.reduce(

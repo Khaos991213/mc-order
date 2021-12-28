@@ -3,12 +3,10 @@ import { projectStorage, projectFirestore, timestamp } from "../Firebase";
 // eslint-disable-next-line
 const useStorage = (
   file,
-  imageText,
-  amountLeft,
-  imageLabel,
+  id,
   price,
-  desc,
-  cat
+  text,
+  text_en
 ) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
@@ -30,17 +28,15 @@ const useStorage = (
       async () => {
         const url = await storageRef.getDownloadURL();
         const createdAt = timestamp();
-        //  const text = imageText;
         // eslint-disable-next-line
+        console.log(url);
         await collectionRef.add({
           url,
           createdAt,
-          imageText,
-          amountLeft,
-          imageLabel,
+          id,
           price,
-          desc,
-          cat,
+          text,
+          text_en,
         });
         setUrl(url);
       }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+//看是否empty
 function CartEmpty() {
   return (
     <div className="container-fluid mt-5 mb-5">
@@ -17,10 +18,10 @@ function CartEmpty() {
                   alt="cart Is Empty"
                 />
                 <h3>
-                  <strong>Din kurv er tom</strong>
+                  <strong>你的購物車沒有東西</strong>
                 </h3>
-                <Link to="/">
-                  <button className="goToMenuBtn">Gå til menu {""}</button>
+                <Link to="/menu">
+                  <button className="goToMenuBtn">前往菜單 {""}</button>
                 </Link>
               </div>
             </div>

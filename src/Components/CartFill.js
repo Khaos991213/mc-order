@@ -8,9 +8,8 @@ import { UserContext } from "../Contexts/UserContext";
 
 function CartFill(props) {
   const [cart] = useContext(CartContext);
-  const currency = "kr.";
-  const zeroes = ",00 ";
-  const fullPrice = zeroes + currency;
+  const currency = "NTD";
+  const fullPrice =  currency;
   const [currentUser] = useContext(UserContext);
 
   let qty = 0;
@@ -22,7 +21,7 @@ function CartFill(props) {
       <div className="row">
         <div className="col-md-4 order-md-2 mb-4">
           <h4 className="d-flex justify-content-between align-items-center mb-3">
-            <span className="text-muted">Din kurv</span>
+            <span className="text-muted">結帳</span>
             <span className="badge badge-primary badge-pill ">{qty}</span>
           </h4>
           <ul className="list-group mb-3">
@@ -54,83 +53,29 @@ function CartFill(props) {
                 </span>
               </li>
             ))}
-            <li className="list-group-item d-flex justify-content-between bg-light">
-              <div className="">
-                <h6 className="my-0">Levering</h6>
-              </div>
-              <span className="text-secondary">29{fullPrice}</span>
-            </li>
-            <li className="list-group-item d-flex justify-content-between bg-light">
-              <div className="text-success">
-                <h6 className="my-0">Rabatkode</h6>
-                <small>Velkomst rabat - 10%</small>
-              </div>
-              <span className="text-success">
-                {" "}
-                {Math.trunc(props.totalPrice * 0.1)}
-                {fullPrice}
-              </span>
-            </li>
+            
             <li className="list-group-item d-flex justify-content-between">
-              <span>Total (DKK)</span>
+              <span>總金額(NTD)</span>
               <strong>
-                {Math.trunc(props.totalPrice * 0.9)}
+                {props.totalPrice-29}
                 {fullPrice}
               </strong>
             </li>
           </ul>
-
-          <form className="card p-2">
-            <small className="text-secondary mb-1">
-              Har du fået en Rabatkode? Indtast den her
-            </small>
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Indtast rabatkode"
-              />
-              <div className="input-group-append">
-                <button type="submit" className="btn btn-primary">
-                  Redeem
-                </button>
-              </div>
-            </div>
-          </form>
         </div>
-        {!currentUser && (
+        
+       
           <div className="col-md-8 order-md-1">
-            <h4 className="mb-4">Ny hos SaveAMeal? 😊 </h4>
-            <div className="alert alert-primary" role="alert">
-              <div className="mb-4">
-                {" "}
-                Venligst log ind for at gennemføre ordren.
-              </div>
-              <div className="pb-2">
-                {" "}
-                <GoogleLoginHandler></GoogleLoginHandler>
-              </div>
-              <span className="ml-5 pl-3">Eller</span> <br></br>
-              <div className="pt-2">
-                <Link to="/sign-up" className="btn btn-primary">
-                  <UserPlus size={24}></UserPlus> Opret konto
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-        {currentUser && (
-          <div className="col-md-8 order-md-1">
-            <h4 className="mb-3">Personlige oplysninger</h4>
+            <h4 className="mb-3">個人資訊</h4>
             <form className="needs-validation" noValidate>
               <div className="row">
                 <div className="col-md-6 mb-3">
-                  <label htmlFor="firstName">Navn</label>
+                  <label htmlFor="firstName">姓氏</label>
                   <input
                     type="text"
                     className="form-control"
                     id="firstName"
-                    placeholder="Indtast dit fornavn"
+                    placeholder="輸入姓氏"
                     value={localStorage.getItem("loginFirstName")}
                     style={{ backgroundColor: "var(--clr-grey-10)" }}
                     required
@@ -140,12 +85,12 @@ function CartFill(props) {
                   </div>
                 </div>
                 <div className="col-md-6 mb-3">
-                  <label htmlFor="lastName">Efternavn</label>
+                  <label htmlFor="lastName">名字</label>
                   <input
                     type="text"
                     className="form-control"
                     id="lastName"
-                    placeholder="Indtast dit efternavn"
+                    placeholder="輸入名字"
                     value={localStorage.getItem("loginLastName")}
                     style={{ backgroundColor: "var(--clr-grey-10)" }}
                     required
@@ -161,7 +106,7 @@ function CartFill(props) {
                   type="email"
                   className="form-control"
                   id="email"
-                  placeholder="Indtast din email"
+                  placeholder="輸入有效信箱"
                   value={localStorage.getItem("loginEmail")}
                   style={{ backgroundColor: "var(--clr-grey-10)" }}
                 />
@@ -169,14 +114,14 @@ function CartFill(props) {
                   Please enter a valid email address htmlFor shipping updates.
                 </div>
               </div>
-              <h4 className="mb-3">Leveringsadresse</h4>
+              <h4 className="mb-3">帳單地址</h4>
               <div className="mb-3">
-                <label htmlFor="address">Addresse</label>
+                <label htmlFor="address">地址</label>
                 <input
                   type="text"
                   className="form-control"
                   id="address"
-                  placeholder="Indtast vejnavn"
+                  placeholder="輸入地址"
                   required
                 />
                 <div className="invalid-feedback">
@@ -184,44 +129,23 @@ function CartFill(props) {
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="zip">Postnummer</label>
+                <label htmlFor="zip">郵遞區號</label>
                 <input
                   type="text"
                   className="form-control"
                   id="zip"
-                  placeholder="Indtast dit postnummer"
+                  placeholder="輸入郵遞區號"
                 />
               </div>
 
               <hr className="mb-4" />
 
-              <div className="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  id="save-info"
-                />
-                <label className="custom-control-label" htmlFor="save-info">
-                  Gem min leveringsadresse til næste ordre
-                </label>
-              </div>
-              <hr className="mb-4" />
+              
+              
 
-              <h4 className="mb-3">Payment</h4>
+              <h4 className="mb-3">支付方式</h4>
 
               <div className="d-block my-3">
-                <div className="custom-control custom-radio">
-                  <input
-                    id="credit"
-                    name="paymentMethod"
-                    type="radio"
-                    className="custom-control-input"
-                    required
-                  />
-                  <label className="custom-control-label" htmlFor="credit">
-                    Kort
-                  </label>
-                </div>
                 <div className="custom-control custom-radio">
                   <input
                     id="mobilepay"
@@ -231,7 +155,7 @@ function CartFill(props) {
                     required
                   />
                   <label className="custom-control-label" htmlFor="mobilepay">
-                    Mobile Pay
+                    行動支付
                   </label>
                 </div>
                 <div className="custom-control custom-radio">
@@ -248,29 +172,14 @@ function CartFill(props) {
                 </div>
               </div>
               <div className="row">
+                
                 <div className="col-md-6 mb-3">
-                  <label htmlFor="cc-name">Navn på kort</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="cc-name"
-                    placeholder=""
-                    required
-                  />
-                  <small className="text-muted">
-                    indtast navnet der står på dit kort
-                  </small>
-                  <div className="invalid-feedback">
-                    Name on card is required
-                  </div>
-                </div>
-                <div className="col-md-6 mb-3">
-                  <label htmlFor="cc-number">Credit card number</label>
+                  <label htmlFor="cc-number">信用卡卡號</label>
                   <input
                     type="text"
                     className="form-control"
                     id="cc-number"
-                    placeholder=""
+                    placeholder="XXXX-XXXX-XXXX-XXXX"
                     required
                   />
                   <div className="invalid-feedback">
@@ -280,12 +189,12 @@ function CartFill(props) {
               </div>
               <div className="row">
                 <div className="col-md-3 mb-3">
-                  <label htmlFor="cc-expiration">Expiration</label>
+                  <label htmlFor="cc-expiration">有效期限</label>
                   <input
                     type="text"
                     className="form-control"
                     id="cc-expiration"
-                    placeholder=""
+                    placeholder="MM/YY"
                     required
                   />
                   <div className="invalid-feedback">
@@ -298,7 +207,7 @@ function CartFill(props) {
                     type="text"
                     className="form-control"
                     id="cc-cvv"
-                    placeholder=""
+                    placeholder="XXX"
                     required
                   />
                   <div className="invalid-feedback">Security code required</div>
@@ -314,7 +223,7 @@ function CartFill(props) {
               </button>
             </form>
           </div>
-        )}
+   
       </div>
       <footer className="my-5 pt-5 text-muted text-center text-small">
         <img

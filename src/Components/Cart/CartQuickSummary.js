@@ -4,9 +4,9 @@ import { CartContext } from "../../Contexts/CartContext";
 import "./CartQuickSummary.css";
 function CartQuickSummary() {
   const [cart, setCart] = useContext(CartContext);
-  const currency = "kr.";
-  const zeroes = ",00 ";
-  const fullPrice = zeroes + currency;
+  const currency = "NTD";
+
+  const fullPrice =  currency;
 
   const removeFromOrder = (id) => {
     const newCart = cart.filter((Cart) => Cart.id !== id);
@@ -34,7 +34,7 @@ function CartQuickSummary() {
     }
   };
   let totalPrice = 0;
-  const deliveryCost = 29;
+  const deliveryCost = 0;
   if (cart) {
     totalPrice = cart.reduce(
       (acc, curr) => acc + parseInt(curr.price * curr.qty),
@@ -44,7 +44,7 @@ function CartQuickSummary() {
   return (
     <div>
       <h4 className='d-flex justify-content-between align-items-center mb-3'>
-        Din kurv
+        購物車
       </h4>
 
       <ul className='list-group mb-3 text-center'>
@@ -82,7 +82,7 @@ function CartQuickSummary() {
         ))}
 
         <li className='d-flex justify-content-between text-center'>
-          <span>Total (DKK)</span>
+          <span>總金額 </span>
           <span className=''>
             {totalPrice}
             {fullPrice}

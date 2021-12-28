@@ -1,19 +1,19 @@
 import React, { useContext, useEffect } from "react";
 import { CartContext } from "../Contexts/CartContext";
 import { projectFirestore } from "../Firebase";
-import ReactGA from "react-ga";
-
+import {Link} from "react-router-dom";
 function CardItem(props) {
   // eslint-disable-next-line
   const [cart, setCart] = useContext(CartContext);
-
   const addToCart = () => {
     const foodItem = {
       name: props.text,
       price: props.price,
+      series:props.series,
       id: Math.random().toString(36).substr(2, 9),
       qty: 1,
     };
+    console.log(foodItem.name)
     let exists = false;
     if (cart) {
       exists = cart.find((x) => x.name === foodItem.name); // check if cart already has the foodItem in cart
@@ -27,11 +27,6 @@ function CardItem(props) {
     } else {
       setCart((currentState) => [...currentState, foodItem]);
     }
-
-    ReactGA.event({
-      category: "Button",
-      action: "AddToCart clicked",
-    });
   };
 
   const removeCard = () => {
@@ -54,25 +49,85 @@ function CardItem(props) {
           </figure>
           <div className='cards__item__info'>
             <div className='cards__item__text'>
-              {props.text}
-              <h4 className='cards__item__price'>{props.price},-</h4>
-            </div>
-            <p className='item-text'>{props.desc}</p>
-            <div>
+              {props.text}{}
+              <h6 className='cards__item__price'>NT${props.price}</h6>
+              
+              
+              <div className="text-md-left mb-4">
+              { props.series===("signature")&&(
+                <Link to={{
+                  pathname:"/custom" ,aboutProps:{
+                  picture:props.src,
+                  price:props.price, 
+                  text:props.text,
+                  series:props.series
+                  }}}
+                className  ="card_item_custome">
+                  套餐  
+                </Link>)}
+              { props.series===("chicken")&&(
+                <Link to={{
+                  pathname:"/custom" ,aboutProps:{
+                  picture:props.src,
+                  price:props.price, 
+                  text:props.text,
+                  series:props.series
+                  }}}
+                className  ="card_item_custome">
+                  套餐  
+                </Link>)}
+                { props.series===("pork_and_seafood")&&(
+                <Link to={{
+                  pathname:"/custom" ,aboutProps:{
+                  picture:props.src,
+                  price:props.price, 
+                  text:props.text,
+                  series:props.series
+                  }}}
+                className  ="card_item_custome">
+                  套餐  
+                </Link>)}
+                { props.series===("beef")&&(
+                <Link to={{
+                  pathname:"/custom" ,aboutProps:{
+                  picture:props.src,
+                  price:props.price, 
+                  text:props.text,
+                  series:props.series
+                  }}}
+                className  ="card_item_custome">
+                  套餐  
+                </Link>)}
+                { props.series===("crispy")&&(
+                <Link to={{
+                  pathname:"/custom" ,aboutProps:{
+                  picture:props.src,
+                  price:props.price, 
+                  text:props.text,
+                  series:props.series
+                  }}}
+                className  ="card_item_custome">
+                  套餐  
+                </Link>)}
+                { props.series===("Mcnuggets")&&(
+                <Link to={{
+                  pathname:"/custom" ,aboutProps:{
+                  picture:props.src,
+                  price:props.price, 
+                  text:props.text,
+                  series:props.series
+                  }}}
+                className  ="card_item_custome">
+                  套餐  
+                </Link>)}
+              </div>
               <button
                 onClick={addToCart}
-                className='btn btn-primary btn-lg rouned '
+                className='btn btn-secondary btn-lg rouned btn-sm'
               >
-                <i className='fas fa-plus'></i> <small>Tilføj</small>
+                <i className='fas fa-plus'></i> <small>加入</small>
               </button>
-              {localStorage.getItem("loginEmail") === "admin@gmail.com" && (
-                <span
-                  onClick={removeCard}
-                  className='cards__item_button_remove'
-                >
-                  <i className='fas fa-trash fa-2x'></i>
-                </span>
-              )}
+              
             </div>
           </div>
         </div>
